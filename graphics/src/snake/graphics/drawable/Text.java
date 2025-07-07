@@ -1,8 +1,10 @@
 package snake.graphics.drawable;
 
+import snake.graphics.basic.Color;
 import snake.graphics.basic.Point;
 
 import java.awt.*;
+
 
 public class Text extends Drawable{
 

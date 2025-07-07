@@ -18,4 +18,8 @@ public class GameWindow {
     public void removeDrawable(Drawable drawable) {
         window.getRenderer().remove(drawable);
     }
+
+    public  void update() {
+        window.repaint();
+    }
 }

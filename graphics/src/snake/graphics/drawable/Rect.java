@@ -1,6 +1,9 @@
 package snake.graphics.drawable;
 
+import snake.graphics.basic.Color;
+
 import java.awt.*;
+
 
 public class Rect extends Drawable{
     private final Rectangle rectangle;
@@ -10,16 +13,32 @@ public class Rect extends Drawable{
         this.rectangle = new Rectangle(x, y, width, height);
     }
 
+    public Rect(Point point, Dimension dimension) {
+        this(point.x, point.y, dimension.width, dimension.height);
+    }
+
     public Rect(){
         this(0,0,0,0);
     }
+
+
 
     public Point location() {
         return new Point(rectangle.x, rectangle.y);
     }
 
+    public void location(snake.graphics.basic.Point point) {
+        rectangle.x = point.x();
+        rectangle.y = point.y();
+    }
+
     public Dimension dimension() {
         return new Dimension(rectangle.width, rectangle.height);
+    }
+
+    public void location(snake.graphics.basic.Dimension dimension) {
+        rectangle.width = dimension().width;
+        rectangle.height = dimension().height;
     }
 
     public void dimension(int width, int height) {

@@ -3,6 +3,7 @@ package snake.graphics.window.internal;
 import snake.graphics.basic.Color;
 import snake.graphics.drawable.Drawable;
 
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,10 +17,11 @@ public class Renderer {
     }
 
     public void render(Graphics g) {
-        for (Drawable d : drawables) {
-            //TODO definir cor
-            g.setColor(d.getColor());
-            d.draw(g);
+        synchronized (drawables) {
+            for (Drawable d : drawables) {
+                g.setColor(toAwtColor(d.getColor()));
+                d.draw(g);
+            }
         }
     }
 
@@ -39,8 +41,4 @@ public class Renderer {
             case GREEN -> java.awt.Color.GREEN;
         };
     }
-
-
-
-
 }

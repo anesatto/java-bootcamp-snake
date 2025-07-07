@@ -1,5 +1,8 @@
 package snake.graphics.drawable;
 
+import snake.graphics.basic.Color;
+import snake.graphics.basic.Point;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +41,15 @@ public class Shape extends Drawable {
 
     @Override
     public void draw(Graphics g) {
-        rects.forEach(r -> r.draw(g));
+        rects.forEach(r -> r.draw(g));}
 
+    public Rect duplicateRect(Rect baseRect, Point direction) {
+        int baseX = baseRect.location().x;
+        int baseY = baseRect.location().y;
+        int baseWidth = baseRect.dimension().width;
+        int baseHeight = baseRect.dimension().height;
+
+        java.awt.Point p = new java.awt.Point(baseX + direction.x() * baseWidth, baseY + direction.y() * baseHeight);
+        return new Rect(p, baseRect.dimension());
     }
 }
