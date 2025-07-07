@@ -1,4 +1,4 @@
-package snake.graphics.drawble;
+package snake.graphics.drawable;
 
 import java.awt.*;
 import java.util.ArrayList;

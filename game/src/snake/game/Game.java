@@ -2,7 +2,12 @@ package snake.game;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import snake.graphics.window.JFrameGameWindow;
+import snake.graphics.basic.Point;
+import snake.graphics.drawable.Rect;
+import snake.graphics.drawable.Text;
+import snake.graphics.window.GameWindow;
+
+import java.awt.*;
 
 public class Game {
 
@@ -10,7 +15,9 @@ public class Game {
 
     public void start() {
         LOGGER.debug("starting!");
+        GameWindow gameWindow = new GameWindow("Snake!", 400, 400);
 
-        new JFrameGameWindow("Snake!", 400, 400);
+            gameWindow.addDrawable(new Rect(20, 20, 200, 100));
+            gameWindow.addDrawable(new Text("Hello!", new Point(200,200), Color.RED));
     }
 }

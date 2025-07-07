@@ -1,4 +1,4 @@
-package snake.graphics.drawble;
+package snake.graphics.drawable;
 
 import snake.graphics.basic.Point;
 
