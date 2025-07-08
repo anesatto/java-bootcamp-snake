@@ -3,24 +3,28 @@ package snake.graphics.window.internal;
 import snake.graphics.basic.Color;
 import snake.graphics.drawable.Drawable;
 
-
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.util.Collections.synchronizedList;
+
+
 public class Renderer {
 
     private final List<Drawable> drawables;
+    private final Graphics graphics;
 
-    public Renderer() {
-        drawables = new ArrayList<>();
+    public Renderer(Graphics graphics) {
+        drawables = synchronizedList(new ArrayList<>());
+        this.graphics = graphics;
     }
 
-    public void render(Graphics g) {
+    public void render() {
         synchronized (drawables) {
             for (Drawable d : drawables) {
-                g.setColor(toAwtColor(d.getColor()));
-                d.draw(g);
+                graphics.setColor(toAwtColor(d.getColor()));
+                d.draw(graphics);
             }
         }
     }

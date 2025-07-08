@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Shape extends Drawable {
 
-    private final List<Rect> rects;
+    public final List<Rect> rects;
 
     public Shape(Color color) {
         super(color);
@@ -21,7 +21,7 @@ public class Shape extends Drawable {
         rects.add(rect);
     }
 
-    public List<Rect> Rects() {
+    public List<Rect> rects() {
         return rects;
     }
 
@@ -44,12 +44,12 @@ public class Shape extends Drawable {
         rects.forEach(r -> r.draw(g));}
 
     public Rect duplicateRect(Rect baseRect, Point direction) {
-        int baseX = baseRect.location().x;
-        int baseY = baseRect.location().y;
-        int baseWidth = baseRect.dimension().width;
-        int baseHeight = baseRect.dimension().height;
+        int baseX = baseRect.location().x();
+        int baseY = baseRect.location().y();
+        int baseWidth = baseRect.dimension().width();
+        int baseHeight = baseRect.dimension().height();
 
-        java.awt.Point p = new java.awt.Point(baseX + direction.x() * baseWidth, baseY + direction.y() * baseHeight);
+        Point p = new Point(baseX + direction.x() * baseWidth, baseY + direction.y() * baseHeight);
         return new Rect(p, baseRect.dimension());
     }
 }

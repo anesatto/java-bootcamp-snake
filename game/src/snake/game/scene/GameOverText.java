@@ -1,15 +1,17 @@
 package snake.game.scene;
 
-import snake.game.core.Game;
+import snake.config.GameOverConfig;
+import snake.config.WindowConfig;
 import snake.graphics.basic.Color;
 import snake.graphics.basic.Point;
 import snake.graphics.drawable.Text;
 
 public class GameOverText extends Text {
 
-    public GameOverText (int score) {
-        super("Fim de Jogo!\n PONTOS: " + score,
-                new Point(Game.WINDOW_WIDTH / 2 - 75, Game.WINDOW_HEIGHT / 2),
-                Color.GREEN);
+    public GameOverText (int score, WindowConfig windowConfig, GameOverConfig gameOverConfig) {
+        super(
+                String.format(gameOverConfig.textTemplate(),score),
+                new Point( windowConfig.width()/ 2 - 75, windowConfig.height()/ 2),
+                Color.valueOf(gameOverConfig.color()));
     }
 }

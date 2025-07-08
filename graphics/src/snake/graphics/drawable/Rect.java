@@ -1,44 +1,41 @@
 package snake.graphics.drawable;
 
-import snake.graphics.basic.Color;
+import snake.graphics.basic.Dimension;
+import snake.graphics.basic.Point;
+
+import static snake.graphics.basic.Color.BLACK;
 
 import java.awt.*;
+import java.util.List;
 
 
 public class Rect extends Drawable{
     private final Rectangle rectangle;
 
     public Rect(int x, int y, int width, int height) {
-        super(Color.WHITE);
+        super(BLACK);
         this.rectangle = new Rectangle(x, y, width, height);
     }
 
     public Rect(Point point, Dimension dimension) {
-        this(point.x, point.y, dimension.width, dimension.height);
+        this(point.x(), point.y(), dimension.width(), dimension.height());
     }
 
     public Rect(){
         this(0,0,0,0);
     }
 
-
-
     public Point location() {
         return new Point(rectangle.x, rectangle.y);
     }
 
-    public void location(snake.graphics.basic.Point point) {
+    public void location(Point point) {
         rectangle.x = point.x();
         rectangle.y = point.y();
     }
 
     public Dimension dimension() {
         return new Dimension(rectangle.width, rectangle.height);
-    }
-
-    public void location(snake.graphics.basic.Dimension dimension) {
-        rectangle.width = dimension().width;
-        rectangle.height = dimension().height;
     }
 
     public void dimension(int width, int height) {
@@ -70,6 +67,11 @@ public class Rect extends Drawable{
     @Override
     public void draw(Graphics g) {
         g.fillRect(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
+    }
 
+    public static void shift(List<Rect> rects) {
+        for (int i = rects.size() - 1; i >= 1; i--) {
+            rects.set(i,rects.get(i-1));
+        }
     }
 }

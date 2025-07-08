@@ -11,5 +11,6 @@
     <orderEntry type="library" name="libs" level="project" />
     <orderEntry type="module" module-name="graphics" />
     <orderEntry type="library" name="libs (2)" level="project" />
+    <orderEntry type="module" module-name="config" />
   </component>
 </module>

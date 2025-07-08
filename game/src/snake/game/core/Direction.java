@@ -17,7 +17,7 @@ public enum Direction {
     }
 
     public boolean canChangeTo(Direction other) {
-        return point.x() + other.point.x() == 0 && point.y() + other.point.y() == 0;
+        return !(point.x() + other.point.x() == 0 && point.y() + other.point.y() == 0);
     }
 
     public Point point() {

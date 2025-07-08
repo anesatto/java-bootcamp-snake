@@ -1,5 +1,6 @@
 package snake.game.scene;
 
+import snake.config.FoodConfig;
 import snake.graphics.basic.Color;
 import snake.graphics.basic.Point;
 import snake.graphics.drawable.Rect;
@@ -9,30 +10,53 @@ import snake.graphics.drawable.Rect;
 import static snake.game.util.RandomUtils.random;
 
 public class Food extends Rect {
-    private static final int SIZE = 5;
 
     private final Rect drawingArea;
+    private int eatTimes;
+    private final FoodConfig config;
 
-    public Food(Rect drawingArea) {
+    public Food(Rect drawingArea, Snake snake, FoodConfig config) {
         this.drawingArea = drawingArea;
+        this.config = config;
 
-        moveToRandomLocation();
-        dimension(SIZE, SIZE);
-        setColor(Color.RED);
+        moveToRandomLocation(snake);
+        dimension(
+                config.sizeInPixels(),
+                config.sizeInPixels()
+        );
+        setColor(Color.valueOf(config.color()));
     }
 
-    public void moveToRandomLocation() {
+    public void moveToRandomLocation(Snake snake) {
         int distanceFromBorder = 5;
 
-        int x = random(
+        do {
+             int x = random(
                 drawingArea.minX() + distanceFromBorder,
-                drawingArea.maxX() - SIZE - distanceFromBorder
-        );
+                drawingArea.maxX() - config.sizeInPixels() - distanceFromBorder
+             );
 
-        int y = random(
+             int y = random(
                 drawingArea.minY() + distanceFromBorder,
-                drawingArea.maxY() - SIZE - distanceFromBorder
-        );
-        location(new Point(x, y));
+                drawingArea.maxY() - config.sizeInPixels() - distanceFromBorder
+             );
+
+             location(new Point(x, y));
+        } while (snake.intersects(this));
+
+    }
+
+    public void eatIfFood(Snake snake) {
+        if (snake.intersects(this)) {
+            eatTimes++;
+            moveToRandomLocation(snake);
+            snake.elongate();
+            snake.faster();
+        }
+
+    }
+
+    public int getEatTimes() {
+        return eatTimes;
     }
 }
